@@ -1,3 +1,15 @@
-import { Routes } from '@angular/router';
+// app-routing.module.ts
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { RessourcesHumainesComponent } from './ressources-humaines/ressources-humaines.component';
 
-export const routes: Routes = [];
+const routes: Routes = [
+  // Other routes...
+  { path: 'ressources-humaines', component: RessourcesHumainesComponent },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
