@@ -1,0 +1,10 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "nom": "Application Web",
+      "duration": 30,
+      "taches": [1, 2]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Analyse des besoins client",
+      "description": "Rencontre avec le client pour comprendre ses besoins",
+      "startDate": "2024-05-15",
+      "endDate": "2024-05-17",
+      "assignedTo": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Conception de l'interface utilisateur",
+      "description": "Création des maquettes et wireframes",
+      "startDate": "2024-05-18",
+      "endDate": "2024-05-20",
+      "assignedTo": [
+        2
+      ]
+    }
+  ]
+}
