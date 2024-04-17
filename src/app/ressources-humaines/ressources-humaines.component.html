@@ -1,6 +1,18 @@
 <h1>Liste des Employés</h1>
 <ul>
     <li *ngFor="let employee of employees">
-        {{ employee.firstName }} {{ employee.lastName }} ({{ employee.position }})
+        {{ employee.firstName }} {{ employee.lastName }}
     </li>
 </ul>
+
+
+<h2>Ajouter un nouvel employé</h2>
+<form (submit)="addEmployee()">
+  <label for="firstName">Prénom:</label>
+  <input type="text" id="firstName" name="firstName" [(ngModel)]="newEmployee.firstName" required>
+  <br>
+  <label for="lastName">Nom:</label>
+  <input type="text" id="lastName" name="lastName" [(ngModel)]="newEmployee.lastName" required>
+  <br>
+  <button type="submit">Ajouter</button>
+</form>
