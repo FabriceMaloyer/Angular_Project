@@ -1,0 +1,50 @@
+.header {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.navbar {
+  background-color: green;
+  height: 50px;
+  /* Increase height of green bar */
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar ul li {
+  display: inline-block;
+  /* Use inline-block to center text vertically */
+  height: 50px;
+  /* Ensure buttons take full height of navbar */
+  position: relative;
+  /* Position for horizontal bar */
+}
+
+.navbar ul li:not(:last-child) {
+  border-right: 1px solid white;
+  /* Add horizontal white bar between each button */
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  /* Change color of text to black */
+  font-weight: bold;
+  padding: 10px 20px;
+  /* Add padding */
+  display: flex;
+  align-items: center;
+  /* Center text vertically */
+}
+
+.navbar ul li a.active {
+  background-color: #333;
+}

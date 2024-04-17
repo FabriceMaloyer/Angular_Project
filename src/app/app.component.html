@@ -1,29 +1,15 @@
+<header class="header">
+  <h1>{{ title }}</h1>
+</header>
 
-
-<main class="main">
-  <div class="content">
-    <div class="left-side">
-
-      <h1>Hello, {{ title }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
-<nav>
+<nav class="navbar">
   <ul>
-    <li><a routerLink="/ressources-humaines" routerLinkActive="active" ariaCurrentWhenActive="page">Ressources</a></li>
-    <!-- <li><a routerLink="/second-component" routerLinkActive="active" ariaCurrentWhenActive="page">Second Component</a></li> -->
+    <li><a routerLink="/ressources-humaines" routerLinkActive="active">Ressources</a></li>
+    <li><a routerLink="/page2" routerLinkActive="active">Page 2</a></li>
+    <li><a routerLink="/page3" routerLinkActive="active">Page 3</a></li>
   </ul>
 </nav>
-    </div>
 
-  </div>
+<main class="main">
+  <router-outlet></router-outlet>
 </main>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
-<router-outlet />
