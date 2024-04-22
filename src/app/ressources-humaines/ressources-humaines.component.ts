@@ -32,4 +32,7 @@ export class RessourcesHumainesComponent implements OnInit {
         this.fetchEmployees(); // Refresh employee list
     }
 
+    exportEmployee(): void {
+      this.employeeService.exportEmployee();
+    }
 }

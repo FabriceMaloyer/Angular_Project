@@ -21,7 +21,7 @@ export class EmployeeService {
   }
 
   exportEmployee(): void {
-    const dataFromLocalStorage = localStorage.getItem('data');
+    const dataFromLocalStorage = localStorage.getItem(this.employeesKey);
     if (!dataFromLocalStorage) {
       console.error('No data found in local storage');
       return;
@@ -30,33 +30,27 @@ export class EmployeeService {
     try {
       // Parse the data from local storage
       const parsedData = JSON.parse(dataFromLocalStorage);
-
-      // Assuming the structure is profiles[0].profile, adjust this according to your data structure
-      const val = parsedData.profiles && parsedData.profiles[0] ? parsedData.profiles[0].profile : null;
-
-      if (!val) {
-        console.error('Profile data not found in parsed data');
-        return;
-      }
+      //   console.log(parsedData);
 
       // Convert the data to JSON string
-      const theJSON = JSON.stringify(val);
-
+      const theJSON = JSON.stringify(parsedData);
+         console.log(theJSON);
       // Create a Blob containing the JSON data
-      const blob = new Blob([theJSON], { type: 'text/json' });
-
+      const blob = new Blob([theJSON], { type: 'application/json' });
+ console.log(blob);
       // Create a URL for the Blob
-      const url = window.URL.createObjectURL(blob);
+      const url = URL.createObjectURL(blob);
 
       // Sanitize the URL
-      const uri: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'employee_data.json'; // Specify the filename
 
-      // Create a download link
-      const downloadLink = document.createElement('a');
-      downloadLink.href = uri.toString();
-      downloadLink.download = 'employee_data.json'; // Specify the filename
-      downloadLink.click();
+      // Programmatically trigger the download
+      a.click();
 
+      // Clean up
+      URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error while exporting data:', error);
     }
