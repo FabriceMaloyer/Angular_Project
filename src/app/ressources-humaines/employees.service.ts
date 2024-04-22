@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root',
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class EmployeeService {
   private employeesKey = 'employees';
 
-  constructor() {}
+  constructor(private sanitizer: DomSanitizer) {}
 
   getEmployees(): any[] {
     const employeesString = localStorage.getItem(this.employeesKey);
@@ -19,13 +20,46 @@ export class EmployeeService {
     localStorage.setItem(this.employeesKey, JSON.stringify(employees));
   }
 
-  exportEmployee() : void {
-    let val = JSON.parse(localStorage.getItem('data')).profiles[0].profile;
+  exportEmployee(): void {
+    const dataFromLocalStorage = localStorage.getItem('data');
+    if (!dataFromLocalStorage) {
+      console.error('No data found in local storage');
+      return;
+    }
 
-     let theJSON = JSON.stringify(this.val);
-     let blob = new Blob([theJSON], { type: 'text/json' });
-     let url = window.URL.createObjectURL(blob);
-     let uri: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(url);
-     this.downloadJsonHref = uri;
+    try {
+      // Parse the data from local storage
+      const parsedData = JSON.parse(dataFromLocalStorage);
+
+      // Assuming the structure is profiles[0].profile, adjust this according to your data structure
+      const val = parsedData.profiles && parsedData.profiles[0] ? parsedData.profiles[0].profile : null;
+
+      if (!val) {
+        console.error('Profile data not found in parsed data');
+        return;
+      }
+
+      // Convert the data to JSON string
+      const theJSON = JSON.stringify(val);
+
+      // Create a Blob containing the JSON data
+      const blob = new Blob([theJSON], { type: 'text/json' });
+
+      // Create a URL for the Blob
+      const url = window.URL.createObjectURL(blob);
+
+      // Sanitize the URL
+      const uri: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+
+      // Create a download link
+      const downloadLink = document.createElement('a');
+      downloadLink.href = uri.toString();
+      downloadLink.download = 'employee_data.json'; // Specify the filename
+      downloadLink.click();
+
+    } catch (error) {
+      console.error('Error while exporting data:', error);
+    }
   }
+
 }
